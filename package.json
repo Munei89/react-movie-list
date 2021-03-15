@@ -82,12 +82,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo \"[Husky] pre-commit\""
+      "pre-commit": "npm run lint-staged"
     }
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "yarn run eslint -- --fix",
+      "npm run eslint -- --fix",
       "git add"
     ],
     "*.{md,json}": [
