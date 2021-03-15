@@ -36,11 +36,6 @@ const MovieList = (props: IMovieListProps) => {
   const [modal, setModal] = useState<boolean>(!!params.rank);
   const [selectedMovie, setSelectedMovie] = useState<any>({});
 
-  const data = top5Movie.components.reduce((acc: any, cur: Components) => {
-    acc[cur.type] = cur.items;
-    return acc;
-  }, {});
-
   const fetchDataCallback = useCallback(
     dataUrl => {
       fetchDataSuccess(dataUrl['movie-list'], dataUrl['order-select']);
@@ -50,6 +45,10 @@ const MovieList = (props: IMovieListProps) => {
 
   useEffect(() => {
     fetchDataLoading();
+    const data = top5Movie.components.reduce((acc: any, cur: Components) => {
+      acc[cur.type] = cur.items;
+      return acc;
+    }, {});
     let timer = setTimeout(() => {
       window.localStorage.setItem('movieList', JSON.stringify(data));
       setMovieOrders(data['order-select']);
@@ -65,7 +64,6 @@ const MovieList = (props: IMovieListProps) => {
     return () => {
       clearTimeout(timer);
     };
-    // eslint-disable-next-line
   }, [fetchDataLoading, params.rank, fetchDataCallback]);
 
   useEffect(() => {
@@ -76,8 +74,9 @@ const MovieList = (props: IMovieListProps) => {
         );
       }
     }
-  }, [params.rank, movies, isLoading]);
-  console.log(movies, orders);
+    // eslint-disable-next-line
+  }, [params.rank, movies]);
+
   const handleOrderBy = (value: string) => {
     setOrderBy(value);
   };
