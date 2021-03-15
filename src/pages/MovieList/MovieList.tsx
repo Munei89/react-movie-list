@@ -43,21 +43,21 @@ const MovieList = (props: IMovieListProps) => {
 
   useEffect(() => {
     fetchDataLoading();
-        let timer = setTimeout(() => {
-          window.localStorage.setItem('movieList', JSON.stringify(data));
-          setMovieOrders(data['order-select']);
-          if (params.rank) {
-            setSelectedMovie(
-                data['movie-list'].find(
-                    (item: Movie) => item.rank === Number(params.rank),
-                ),
-            );
-          }
-          fetchDataSuccess(data['movie-list'], data['order-select']);
-        }, 1000);
-        return () => {
-          clearTimeout(timer);
-        };
+    let timer = setTimeout(() => {
+      window.localStorage.setItem('movieList', JSON.stringify(data));
+      setMovieOrders(data['order-select']);
+      if (params.rank) {
+        setSelectedMovie(
+          data['movie-list'].find(
+            (item: Movie) => item.rank === Number(params.rank),
+          ),
+        );
+      }
+      fetchDataSuccess(data['movie-list'], data['order-select']);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [fetchDataSuccess, fetchDataLoading, params.rank]);
 
   useEffect(() => {
