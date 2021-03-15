@@ -1,7 +1,7 @@
 import { Button, Col, Dropdown, Menu, Row } from 'antd';
 import top5Movie from '../../services/top5Movie';
 import MovieCard from '../../components/MovieCard/MovieCard';
-import { Dispatch, useEffect, useState } from 'react';
+import { Dispatch, useEffect, useState, useCallback } from 'react';
 import { Components, Movie, Order } from '../../types';
 import { useParams } from 'react-router-dom';
 import MovieDetails from '../MovieDetails';
@@ -41,6 +41,13 @@ const MovieList = (props: IMovieListProps) => {
     return acc;
   }, {});
 
+  const fetchDataCallback = useCallback(
+    dataUrl => {
+      fetchDataSuccess(dataUrl['movie-list'], dataUrl['order-select']);
+    },
+    [fetchDataSuccess],
+  );
+
   useEffect(() => {
     fetchDataLoading();
     let timer = setTimeout(() => {
@@ -53,12 +60,13 @@ const MovieList = (props: IMovieListProps) => {
           ),
         );
       }
-      fetchDataSuccess(data['movie-list'], data['order-select']);
+      fetchDataCallback(data);
     }, 1000);
     return () => {
       clearTimeout(timer);
     };
-  }, [fetchDataSuccess, fetchDataLoading, params.rank]);
+    // eslint-disable-next-line
+  }, [fetchDataLoading, params.rank, fetchDataCallback]);
 
   useEffect(() => {
     if (!isLoading) {
