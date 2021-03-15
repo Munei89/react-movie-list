@@ -1,6 +1,6 @@
-import { Modal, Typography } from "antd";
-import { Movie } from "../../types";
-import { WrapperContainer, WrapperDetails } from "./styles";
+import { Modal, Typography } from 'antd';
+import { Movie } from '../../types';
+import { WrapperContainer, WrapperDetails } from './styles';
 
 const { Title, Paragraph } = Typography;
 
@@ -14,15 +14,8 @@ const MovieDetails = (props: IMovieDetailsProps) => {
   const {
     modal,
     toggle,
-    movie: {
-      title,
-      imageUrl,
-      releaseDate,
-      rank,
-      type,
-      synopsis,
-    }
-  } = props
+    movie: { title, imageUrl, releaseDate, rank, type, synopsis },
+  } = props;
 
   return (
     <Modal
@@ -33,24 +26,20 @@ const MovieDetails = (props: IMovieDetailsProps) => {
       width={1100}
     >
       <WrapperContainer>
-        <img
-          alt={title}
-          src={imageUrl}
-          className="imgCard"
-        />
+        <img alt={title} src={imageUrl} className="imgCard" />
         <WrapperDetails>
           <Title level={2}>
             {title} <span>({releaseDate})</span>
           </Title>
           <Paragraph>
             <Title level={5} className="span">
-              Rank:{" "}
+              Rank:{' '}
             </Title>
             {rank}
           </Paragraph>
           <Paragraph>
             <Title level={5} className="span">
-              Type:{" "}
+              Type:{' '}
             </Title>
             {type}
           </Paragraph>

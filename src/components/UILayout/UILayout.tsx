@@ -8,9 +8,7 @@ interface IUILayoutProps {
 }
 
 const UILayout = (props: IUILayoutProps) => {
-   const {
-       children
-   } = props
+  const { children } = props;
   return (
     <Layout>
       <UIHeader />

@@ -4,9 +4,9 @@ import { VideoCameraFilled } from '@ant-design/icons';
 const UIHeader = () => {
   return (
     <StyledHeader>
-        <Logo>
-            <VideoCameraFilled /> Movie List
-        </Logo>
+      <Logo>
+        <VideoCameraFilled /> Movie List
+      </Logo>
     </StyledHeader>
   );
 };

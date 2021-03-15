@@ -1,5 +1,5 @@
-import { MovieListingAction } from "./actions";
-import { FETCH_DATA_LOADING, FETCH_DATA_SUCCESS } from "./types";
+import { MovieListingAction } from './actions';
+import { FETCH_DATA_LOADING, FETCH_DATA_SUCCESS } from './types';
 
 const INITIAL_STATE = {
   isLoading: true,
