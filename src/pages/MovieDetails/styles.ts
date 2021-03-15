@@ -1,15 +1,13 @@
 import styled from 'styled-components';
+import { Row } from 'antd';
 
-export const WrapperContainer = styled.div`
-  display: flex;
-  align-items: center;
+export const WrapperContainer = styled(Row)`
   .imgCard {
-    width: 350px;
+    max-width: 100%;
   }
 `;
 
 export const WrapperDetails = styled.div`
-  margin-left: 24px;
   .span {
     display: inline;
   }

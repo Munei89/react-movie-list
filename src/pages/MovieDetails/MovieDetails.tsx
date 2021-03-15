@@ -1,4 +1,4 @@
-import { Modal, Typography } from 'antd';
+import { Modal, Typography, Col } from 'antd';
 import { Movie } from '../../types';
 import { WrapperContainer, WrapperDetails } from './styles';
 
@@ -25,31 +25,35 @@ const MovieDetails = (props: IMovieDetailsProps) => {
       footer={null}
       width={1100}
     >
-      <WrapperContainer>
-        <img alt={title} src={imageUrl} className="imgCard" />
-        <WrapperDetails>
-          <Title level={2}>
-            {title} <span>({releaseDate})</span>
-          </Title>
-          <Paragraph>
-            <Title level={5} className="span">
-              Rank:{' '}
+      <WrapperContainer gutter={[16, 16]}>
+        <Col xs={24} sm={24} md={8}>
+          <img alt={title} src={imageUrl} className="imgCard" />
+        </Col>
+        <Col xs={24} sm={24} md={16}>
+          <WrapperDetails>
+            <Title level={2}>
+              {title} <span>({releaseDate})</span>
             </Title>
-            {rank}
-          </Paragraph>
-          <Paragraph>
-            <Title level={5} className="span">
-              Type:{' '}
-            </Title>
-            {type}
-          </Paragraph>
-          <div>
-            <Title level={5} className="mb-0">
-              Synopsis:
-            </Title>
-            <Paragraph className="synopsis">{synopsis}</Paragraph>
-          </div>
-        </WrapperDetails>
+            <Paragraph>
+              <Title level={5} className="span">
+                Rank:{' '}
+              </Title>
+              {rank}
+            </Paragraph>
+            <Paragraph>
+              <Title level={5} className="span">
+                Type:{' '}
+              </Title>
+              {type}
+            </Paragraph>
+            <div>
+              <Title level={5} className="mb-0">
+                Synopsis:
+              </Title>
+              <Paragraph className="synopsis">{synopsis}</Paragraph>
+            </div>
+          </WrapperDetails>
+        </Col>
       </WrapperContainer>
     </Modal>
   );
