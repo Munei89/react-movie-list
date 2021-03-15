@@ -82,7 +82,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "yarn run eslint -- --fix"
+      "yarn run eslint -- --fix", "git add"
     ],
     "*.{md,json}": [
       "prettier --write"
