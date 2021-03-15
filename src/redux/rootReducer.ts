@@ -6,8 +6,4 @@ const rootReducer = combineReducers({
   movieList: movieListReducer,
 });
 
-
-
-
-
 export default rootReducer;
