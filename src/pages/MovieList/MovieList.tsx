@@ -36,35 +36,36 @@ const MovieList = (props: IMovieListProps) => {
   const [modal, setModal] = useState<boolean>(!!params.rank);
   const [selectedMovie, setSelectedMovie] = useState<any>({});
 
-  const fetchDataCallback = useCallback(
+  const rankCallback = useCallback(
     dataUrl => {
-      fetchDataSuccess(dataUrl['movie-list'], dataUrl['order-select']);
-    },
-    [fetchDataSuccess],
-  );
-
-  useEffect(() => {
-    fetchDataLoading();
-    const data = top5Movie.components.reduce((acc: any, cur: Components) => {
-      acc[cur.type] = cur.items;
-      return acc;
-    }, {});
-    let timer = setTimeout(() => {
-      window.localStorage.setItem('movieList', JSON.stringify(data));
-      setMovieOrders(data['order-select']);
       if (params.rank) {
         setSelectedMovie(
-          data['movie-list'].find(
+          dataUrl['movie-list'].find(
             (item: Movie) => item.rank === Number(params.rank),
           ),
         );
       }
-      fetchDataCallback(data);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  useEffect(() => {
+    const data = top5Movie.components.reduce((acc: any, cur: Components) => {
+      acc[cur.type] = cur.items;
+      return acc;
+    }, {});
+    fetchDataLoading();
+    let timer = setTimeout(() => {
+      window.localStorage.setItem('movieList', JSON.stringify(data));
+      setMovieOrders(data['order-select']);
+      rankCallback(data);
+      fetchDataSuccess(data['movie-list'], data['order-select']);
     }, 1000);
     return () => {
       clearTimeout(timer);
     };
-  }, [fetchDataLoading, params.rank, fetchDataCallback]);
+  }, [fetchDataLoading, fetchDataSuccess, rankCallback]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -74,8 +75,7 @@ const MovieList = (props: IMovieListProps) => {
         );
       }
     }
-    // eslint-disable-next-line
-  }, [params.rank, movies]);
+  }, [params.rank, movies, isLoading]);
 
   const handleOrderBy = (value: string) => {
     setOrderBy(value);
