@@ -1,1 +1,1 @@
-export { default } from './UIFooter'
+export { default } from './UIFooter';

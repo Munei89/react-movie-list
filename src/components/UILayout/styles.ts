@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Layout } from "antd";
+import styled from 'styled-components';
+import { Layout } from 'antd';
 
 export const LayoutContent = styled(Layout.Content)`
   max-width: 1280px;

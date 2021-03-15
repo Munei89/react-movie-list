@@ -1,1 +1,1 @@
-export { default } from './UILayout'
+export { default } from './UILayout';
